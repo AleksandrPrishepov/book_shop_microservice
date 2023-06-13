@@ -11,4 +11,4 @@ class Salesman(Base):
     salesman_name = Column(String, nullable=False)
     age = Column(Integer, nullable=False)
 
-    order = relationship("Order", back_populates="salesman")
+    order_items = relationship("OrderItems", back_populates="salesman")

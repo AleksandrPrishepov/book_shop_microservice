@@ -14,16 +14,16 @@ def post_author(author: AuthorValidator, db):
 def get_author(id: Optional[int], db):
     if id == None:
         return db.query(Author).order_by(Author.author_name).all()
-        # my_select = select(Author)
-        # return session.execute(my_select).all()
+        # my_select = db(Author)
+        # return db.execute(my_select).all()
 
     else:
-        return db.query(Author).filter(Author.id == id).one()
-        # my_select = select(Author).where(Author.id == id)
-        # return session.execute(my_select).all()
+        # return db.query(Author).filter(Author.id == id).one()
+        my_select = db(Author).where(Author.id == id)
+        return db.execute(my_select).all()
 
 def get_author_and_book(db):
     return db.query(Author.author_name, Book.title).filter(
         Author.id == Book.author_id
     )
-    # return session.query(Author).join(Book).filter(Author.id > 2).one()
+    # return db.query(Author).join(Book).filter(Author.id > 2).one()
